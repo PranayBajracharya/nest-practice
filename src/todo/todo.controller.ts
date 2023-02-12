@@ -24,19 +24,19 @@ export class TodoController {
     return this.todoService.getTodoById(Number(id));
   }
 
-  @Post()
-  postTodo(@Body() createTodoDto: CreateTodoDto) {
-    return this.todoService.createTodo(createTodoDto);
-  }
+  // @Post()
+  // postTodo(@Body() createTodoDto: CreateTodoDto) {
+  //   return this.todoService.createTodo(createTodoDto);
+  // }
 
-  @Patch('/:id')
-  updateTodo(@Param('id') id: string, @Body('status') status: 0 | 1) {
-    const newStatus = status === 1 ? Status.ACTIVE : Status.INACTIVE;
-    return this.todoService.updateStatus(Number(id), newStatus);
-  }
+  // @Patch('/:id')
+  // updateTodo(@Param('id') id: string, @Body('status') status: 0 | 1) {
+  //   const newStatus = status === 1 ? Status.ACTIVE : Status.INACTIVE;
+  //   return this.todoService.updateStatus(Number(id), newStatus);
+  // }
 
-  @Delete(':id')
-  deleteTodo(@Param('id') id: string): void {
-    return this.todoService.deleteTodo(Number(id));
-  }
+  // @Delete(':id')
+  // deleteTodo(@Param('id') id: string): void {
+  //   return this.todoService.deleteTodo(Number(id));
+  // }
 }

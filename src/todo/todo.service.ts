@@ -19,8 +19,8 @@ export enum Status {
 export class TodoService {
   constructor(
     @InjectRepository(Todo)
-    private todoRepository: Repository<Todo>
-  ) { }
+    private todoRepository: Repository<Todo>,
+  ) {}
   private todoList: Todo[] = [];
   private index = 0;
 
@@ -29,7 +29,7 @@ export class TodoService {
   }
 
   getTodoById(id: number) {
-    return this.todoRepository.findOneBy({id});
+    return this.todoRepository.findOneBy({ id });
   }
 
   createTodo(createTodoDto) {
@@ -45,7 +45,7 @@ export class TodoService {
   }
 
   updateStatus(id, status) {
-    return this,this.todoRepository.update(id,{status: false});
+    return this, this.todoRepository.update(id, { status: false });
   }
 
   deleteTodo(id: number): void {

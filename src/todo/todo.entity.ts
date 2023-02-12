@@ -1,20 +1,15 @@
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('todo')
 export class Todo {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({
-        type: "varchar"
-    })
-    title: string;
+  @Column({
+    type: 'varchar',
+  })
+  title: string;
 
-    @Column()
-    status: boolean;
+  @Column()
+  status: boolean;
 }
-

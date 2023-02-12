@@ -8,6 +8,6 @@ import { TodoService } from './todo.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Todo])],
   controllers: [TodoController],
-  providers: [TodoService]
+  providers: [TodoService],
 })
 export class TodoModule {}
