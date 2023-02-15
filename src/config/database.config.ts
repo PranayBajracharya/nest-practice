@@ -8,4 +8,3 @@ export default (): any => ({
     database: process.env.DB_DATABASE || 'todo',
   },
 });
-

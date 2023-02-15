@@ -14,5 +14,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     }),
   ],
+  providers: [],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule {}
