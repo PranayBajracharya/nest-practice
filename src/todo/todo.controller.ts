@@ -8,19 +8,19 @@ import {
   Post,
 } from '@nestjs/common';
 import { CreateTodoDto } from './todo.dto';
-import { TodoService, Todo, Status } from './todo.service';
+import { TodoService, Status } from './todo.service';
 
 @Controller('todo')
 export class TodoController {
   constructor(private todoService: TodoService) {}
 
   @Get()
-  getAllTodos(): Todo[] {
+  getAllTodos() {
     return this.todoService.getAllTodos();
   }
 
   @Get('/:id')
-  getTodoById(@Param('id') id: string): Todo {
+  getTodoById(@Param('id') id: string) {
     return this.todoService.getTodoById(Number(id));
   }
 

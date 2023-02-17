@@ -3,6 +3,8 @@ import { TodoModule } from './todo/todo.module';
 import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [TodoModule, DatabaseModule],
+  imports: [TodoModule,
+     DatabaseModule
+    ],
 })
-export class AppModule {}
+export class AppModule { }

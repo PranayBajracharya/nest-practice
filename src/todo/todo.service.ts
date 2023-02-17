@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateTodoDto } from './todo.dto';
+import { Todo } from './todo.entity';
 
-export interface Todo {
-  id: number;
-  title: string;
-  status: Status;
-}
+// export interface Todo {
+//   id: number;
+//   title: string;
+//   status: Status;
+// }
 
 export enum Status {
   'ACTIVE' = 1,
@@ -14,33 +17,35 @@ export enum Status {
 
 @Injectable()
 export class TodoService {
+  constructor(
+    @InjectRepository(Todo)
+    private todoRepository: Repository<Todo>
+  ) { }
   private todoList: Todo[] = [];
   private index = 0;
 
   getAllTodos() {
-    return this.todoList;
+    return this.todoRepository.find();
   }
 
-  getTodoById(id: number): Todo {
-    return this.todoList.find((todo) => todo.id === id);
+  getTodoById(id: number) {
+    return this.todoRepository.findOneBy({id});
   }
 
-  createTodo(createTodoDto: CreateTodoDto): Todo {
+  createTodo(createTodoDto) {
     const { title } = createTodoDto;
 
-    const todo = {
+    const todo: Partial<Todo> = {
       id: this.index++,
       title,
-      status: Status.ACTIVE,
+      status: true,
     };
-    this.todoList.push(todo);
-    return todo;
+
+    return this.todoRepository.save(todo);
   }
 
-  updateStatus(id: number, status: Status): Todo {
-    const selectedTodo = this.getTodoById(id);
-    selectedTodo.status = status;
-    return selectedTodo;
+  updateStatus(id, status) {
+    return this,this.todoRepository.update(id,{status: false});
   }
 
   deleteTodo(id: number): void {

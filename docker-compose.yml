@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app_todo:
+    container_name: todo
+    build:
+      context: .
+      target: dev
+    restart: on-failure
+    volumes:
+      - ./:/app
+      - ./node_modules:/app/node_modules
+    ports:
+      - '2000:3000'
+    networks:
+      - todo_network
+  todo_mysql:
+    container_name: msql_todo
+    image: mysql:8.0.23
+    ports:
+      - '2206:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=todo
+      - MYSQL_USER=todo
+      - MYSQL_PASSWORD=todo
+    networks:
+      - todo_network
+networks:
+  todo_network:
+    external:
+      name: pub_sub_network
