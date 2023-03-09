@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { TODO_STATUS } from './todo.schema';
 
 @Entity('todo')
 export class Todo {
@@ -11,5 +12,5 @@ export class Todo {
   title: string;
 
   @Column()
-  status: boolean;
+  status: TODO_STATUS;
 }

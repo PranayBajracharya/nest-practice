@@ -3,12 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTodoDto } from './todo.dto';
 import { Todo } from './todo.entity';
-
-// export interface Todo {
-//   id: number;
-//   title: string;
-//   status: Status;
-// }
+import { TODO_STATUS } from './todo.schema';
 
 export enum Status {
   'ACTIVE' = 1,
@@ -28,8 +23,11 @@ export class TodoService {
     return this.todoRepository.find();
   }
 
-  getTodoById(id: number) {
-    return this.todoRepository.findOneBy({ id });
+  async getTodoById(id: number) {
+    const res = await this.todoRepository.findOneBy({ id });
+    console.log(res);
+
+    return;
   }
 
   createTodo(createTodoDto) {
@@ -38,14 +36,14 @@ export class TodoService {
     const todo: Partial<Todo> = {
       id: this.index++,
       title,
-      status: true,
+      status: TODO_STATUS.ACTIVE,
     };
 
     return this.todoRepository.save(todo);
   }
 
   updateStatus(id, status) {
-    return this, this.todoRepository.update(id, { status: false });
+    return this, this.todoRepository.update(id, { status: status });
   }
 
   deleteTodo(id: number): void {

@@ -3,9 +3,9 @@ import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host:'msql_todo',
+  host: 'msql_todo',
   port: 3306,
-  database:'todo',
+  database: 'todo',
   username: 'todo',
   password: 'todo',
   synchronize: false,

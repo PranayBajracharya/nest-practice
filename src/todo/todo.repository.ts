@@ -12,7 +12,7 @@ export class TodoRepository extends Repository<Todo> {
     const todo = new Todo();
     todo.title = title;
     todo.status = TODO_STATUS.ACTIVE;
-    await todo.save();
+    // await todo.save();
 
     return todo;
   }
